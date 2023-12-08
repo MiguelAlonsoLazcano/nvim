@@ -197,7 +197,13 @@ require('lazy').setup({
       vim.cmd.colorscheme 'solarized-osaka'
     end,
   },
-
+  --vim.g.lightline = {
+  --  colorscheme = 'monochrome',
+    -- in lua, the above line is syntactic sugar for:
+    -- ['colorscheme'] = 'catppuccin'
+    -- this may be helpful if the option name has a reserved symbol in it like + or -
+    -- ['key-here'] = 'value'
+  --  },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -252,6 +258,16 @@ require('lazy').setup({
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+    "MunifTanjim/nui.nvim",
+    "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -655,6 +671,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+vim.opt.termguicolors = true
+vim.cmd("colorscheme monochrome")
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
